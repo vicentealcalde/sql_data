@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: script-configmap
+data:
+  script.sql: |
+    -- Pegar aquí el contenido de tu script SQL que crea las tablas
+
+  DB_HOST: db   # Dirección IP o nombre del servicio de la base de datos
+  DB_USER: postgres
+  DB_PASSWORD: postgres
+  DB_NAME: postgres # Nombre de la base de datos

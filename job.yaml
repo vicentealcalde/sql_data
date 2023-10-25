@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-tables-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: job-container
+          image: tu-imagen-de-trabajo
+          command:
+            - "sh"
+            - "-c"
+            - "psql -h db -U postgres -d postgres -f /mnt/script.sql"
+          volumeMounts:
+            - name: script-volume
+              mountPath: /mnt/script.sql
+      restartPolicy: Never
+      volumes:
+        - name: script-volume
+          configMap:
+            name: script-configmap
+  backoffLimit: 4
